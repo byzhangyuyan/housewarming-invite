@@ -140,6 +140,28 @@
       transform: translateX(-50%) translateY(0);
     }
 
+    .js-hint {
+      font-size: 0.65em;
+      opacity: 0.5;
+      vertical-align: super;
+      pointer-events: none;
+    }
+
+    .js-close {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      background: none;
+      border: none;
+      font-size: 10px;
+      cursor: pointer;
+      opacity: 0.45;
+      padding: 2px 4px;
+      line-height: 1;
+      color: var(--brown);
+    }
+    .js-close:hover { opacity: 0.85; }
+
     .js-bamboo { flex-shrink: 0; width: 36px; }
 
     .js-text {
@@ -723,8 +745,9 @@
 
     <p class="hero-sub">
       Lydia's very overdue housewarming <br>and Lunar New Year Party.<br> <br>
-      A <span class="js-trigger" onclick="this.classList.toggle('open')" tabindex="0">Jook&nbsp;Sing's
+      A <span class="js-trigger" onclick="this.classList.toggle('open')" tabindex="0">Jook&nbsp;Sing's&nbsp;<span class="js-hint">ⓘ</span>
         <span class="js-tooltip" role="tooltip">
+          <button class="js-close" onclick="event.stopPropagation();this.closest('.js-trigger').classList.remove('open')" aria-label="Close">✕</button>
           <!-- Bamboo SVG -->
           <svg class="js-bamboo" viewBox="0 0 48 88" xmlns="http://www.w3.org/2000/svg" fill="none">
             <!-- Left stalk -->
@@ -1154,6 +1177,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
 
   setTimeout(() => confettiBurst(18), 1400);
+
+  // Close Jook Sing tooltip on tap outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.js-trigger')) {
+      document.querySelectorAll('.js-trigger.open').forEach(el => el.classList.remove('open'));
+    }
+  });
 });
 </script>
 </body>
