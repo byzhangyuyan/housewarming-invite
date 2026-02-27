@@ -141,6 +141,24 @@
     }
 
     .js-bamboo { flex-shrink: 0; width: 36px; }
+    .js-hint {
+      font-size: 0.7em;
+      opacity: 0.5;
+      vertical-align: middle;
+    }
+    .js-close {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 10px;
+      cursor: pointer;
+      opacity: 0.4;
+      padding: 2px 4px;
+      line-height: 1;
+    }
+    .js-close:hover { opacity: 0.8; }
 
     .js-text {
       font-size: 8.5px;
@@ -716,7 +734,7 @@
 
     <p class="hero-sub">
       Lydia's very overdue housewarming <br>and Lunar New Year Party.<br> <br>
-      A <span class="js-trigger" onclick="this.classList.toggle('open')" tabindex="0">Jook&nbsp;Sing's
+      A <span class="js-trigger" onclick="this.classList.toggle('open')" tabindex="0">Jook&nbsp;Sing's&nbsp;<span class="js-hint">ⓘ</span>
         <span class="js-tooltip" role="tooltip">
           <!-- Bamboo SVG -->
           <svg class="js-bamboo" viewBox="0 0 48 88" xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -742,6 +760,7 @@
             <strong>竹升 · Jook Sing</strong>
             A Cantonese identifier for overseas Chinese. The bamboo stem is hollow and divided into compartments — water poured in one end won't flow to the other. 兩頭都不通: can't get through either side.
           </span>
+          <button class="js-close" onclick="event.stopPropagation();this.closest('.js-trigger').classList.remove('open')" aria-label="Close">✕</button>
         </span>
       </span> interpretation of<br>
       Chinese traditions.
@@ -1023,6 +1042,15 @@
 </section>
 
 <script>
+/* ─────────────────────────────────────
+   JOOK SING TOOLTIP — tap outside to close
+───────────────────────────────────── */
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.js-trigger')) {
+    document.querySelectorAll('.js-trigger.open').forEach(el => el.classList.remove('open'));
+  }
+});
+
 /* ─────────────────────────────────────
    SPARKLE
 ───────────────────────────────────── */
