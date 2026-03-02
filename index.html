@@ -1023,7 +1023,7 @@
     <p class="d-val">Saturday, February 28, 2026<br>2–4 PM</p>
 
     <p class="d-label">Where</p>
-    <p class="d-val">Chicago, IL</p>
+    <p class="d-val">123 Prosperity Lane<br>Chicago, IL</p>
 
     <p class="d-label">Counting down</p>
     <div class="countdown" id="countdown">
@@ -1071,7 +1071,7 @@ function tick() {
   const diff   = target - Date.now();
   if (diff <= 0) {
     document.getElementById('countdown').innerHTML =
-      '<span style="font-size:13px;letter-spacing:0.18em;opacity:0.7">IT\'S TIME. GET THERE.</span>';
+      '<span style="font-size:13px;letter-spacing:0.18em;opacity:0.7">It\'s a wrap. Thanks for coming. ✦</span>';
     return;
   }
   const d = Math.floor(diff / 864e5);
